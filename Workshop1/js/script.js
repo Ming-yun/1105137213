@@ -79,11 +79,16 @@ $(function () {
     end.min(start.value());
 });
 
-//total
+//total(jQ)
 $(function () {
-    $("#book_price").kendoNumericTextBox().data('kendoNumericTextBox');
-    $("#book_amount").kendoNumericTextBox().data('kendoNumericTextBox');
-    $("#book_total").bind("change", function () { alert($("#book_price").data('kendoNumericTextBox').value() + $("#book_amount").data('kendoNumericTextBox').value()) });
+    //price
+    $("#book_price").click(function () {
+        $('#book_total').html($("#book_amount").val() * $("#book_price").val());
+    });
+    //amount
+    $("#book_amount").click(function () {
+        $('#book_total').html($("#book_amount").val() * $("#book_price").val());
+    });
 });
 
 //彈出視窗
@@ -114,13 +119,13 @@ $("#add_book").click(function () {
     }).data("kendoWindow").center().open();
 });
 
+
 //查詢結果
 $(function () {
 
     $("#book_grid").kendoGrid({
         dataSource: {
             data: bookData,
-           
             schema: {
                 model: {
                     fields: {
